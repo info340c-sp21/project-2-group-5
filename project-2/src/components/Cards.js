@@ -7,30 +7,38 @@ function Cards() {
     <div className='cards'>
       <div className='cards__container'>
         <div className='cards__wrapper'>
+          <div className='cards__twin'>
           <ul className='cards__items'>
             <Card
               src='images/running.jpg'
               text='Carbon Footprint Calculator'
               path='/calculator'
             />
+            </ul>
+            <ul className='cards__items'>
             <Card
               src='images/tips.jpg'
               text='Pro Tips for Healthy Life Styles'
               path='/pro-tips'
             />
           </ul>
+          </div>
+          <div className='cards__twin'>
           <ul className='cards__items'>
             <Card
               src='images/compare.jpg'
               text='Carbon Footprint Comparison'
               path='/compare'
             />
+          </ul>
+          <ul className='cards__items'>
             <Card
               src='images/nature.jpg'
-              text='Content TBD'
+              text='Carbon Footprint Content TBD'
               path='/'
             />
           </ul>
+          </div>
         </div>
       </div>
     </div>

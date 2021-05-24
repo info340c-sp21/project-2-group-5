@@ -11,14 +11,16 @@
     width: 90%;
     margin: 0 auto;
   }
-  
   .cards__wrapper {
     display: flex;
-    margin: 20px 0 45px;
+    flex-direction: row;
+    position: relative;
+    margin: 50px 0 45px;
   }
   
   .cards__items {
     margin-bottom: 24px;
+    width: 220px;
   }
   
   .cards__item {
@@ -71,13 +73,22 @@
     font-size: 18px;
     line-height: 24px;
   }
-  
-  @media only screen and (min-width: 1200px) {
-    .content__blog__container {
-      width: 84%;
+
+  @media only screen and (min-width: 768px) {
+    .cards__twin {
+      display: flex;
+      flex-direction: row;
     }
   }
-  
+
+  @media only screen and (max-width: 500px) {
+    .cards__wrapper {
+      display: flex;
+      flex-direction: column;
+
+    }
+  }
+
   @media only screen and (min-width: 1024px) {
     .cards__items {
       display: flex;
