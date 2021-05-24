@@ -1,0 +1,8 @@
+.footer__container {
+    background-color: #3B945E;
+    padding: 1rem 0 1rem 0;
+  }
+  .footer__container p {
+      color:#fff;
+      text-align: center;
+  }
