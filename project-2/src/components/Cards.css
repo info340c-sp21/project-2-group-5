@@ -22,6 +22,9 @@
     margin-bottom: 24px;
     width: 220px;
   }
+  .cards__item:hover {
+    background-color: #b0ff9d;
+  }
   
   .cards__item {
     display: flex;
