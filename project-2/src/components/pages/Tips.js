@@ -2,7 +2,8 @@
 import React, {useState} from 'react';
 import './Tips.css';
 
-const data = [{
+const data = [
+  {
     "category": "a",
     "text":"Eliminate single-use plastic",
   }, {
@@ -35,10 +36,13 @@ function TipsPage() {
     const [goals, setGoal] = useState(goal);
     let handleGoalClick = (goal) => {
         let goals = data.map(tip => {
-            if (tip.name === goal) {
-              tip["goal"] = true;
+            if (tip.text == goal) {
+                let goalToBeAdded = {
+                    "category": tip.category,
+                    "text": tip.text,
+                }
+                return goalToBeAdded;
             }
-            return tip;
         });
         setGoal(goals);
     };
