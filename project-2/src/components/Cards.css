@@ -20,7 +20,7 @@
   
   .cards__items {
     margin-bottom: 24px;
-    width: 220px;
+    width: 200px;
   }
   .cards__item:hover {
     background-color: #b0ff9d;
