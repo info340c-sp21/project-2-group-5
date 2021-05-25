@@ -33,16 +33,13 @@ function TipsPage() {
         setClick(!click);       
     }
 
-    const [goals, setGoal] = useState(goal);
+    const [goals, setGoal] = useState(data);
     let handleGoalClick = (goal) => {
         let goals = data.map(tip => {
             if (tip.text == goal) {
-                let goalToBeAdded = {
-                    "category": tip.category,
-                    "text": tip.text,
-                }
-                return goalToBeAdded;
+                tip.goal = true;
             }
+            return tip;
         });
         setGoal(goals);
     };
@@ -51,7 +48,7 @@ function TipsPage() {
         <div>
         <ListOfTips tips={data} handleClick={handleGoalClick}/>   
         <br/>
-        <ListOfGoals goals={goals}/>
+        <ListOfGoals goals={data}/>
         </div>
          
     );
@@ -76,12 +73,14 @@ function ListOfTips(props) {
 
 function Goal(props) {
     return(
-        <li>{props.goal}</li>
+        <li>{props.tip}</li>
     );
 }
 function ListOfGoals(props) {
-    let goals = props.goals.map(goal => {
-        return <Goal goal={goal.text}/>
+    let goals = props.goals.map(tip => {
+        if(tip.goal == true){
+           return <Goal tip={tip.text}/> 
+        }   
     })
     return(
         <ul>
