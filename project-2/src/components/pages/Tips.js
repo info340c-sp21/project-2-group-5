@@ -24,9 +24,6 @@ const data = [
   }
 ];
 
-let goal = [{
-
-}];
 function TipsPage() {
     const [goals, setGoal] = useState(data);
     let handleGoalClick = (goal) => {
@@ -39,10 +36,20 @@ function TipsPage() {
         setGoal(goals);
     };
 
+    let handleFinishedClick = (tipName) => {
+        let finish = data.map(tip => {
+            if (tip.text == tipName) {
+                tip.finished = !tip.finished;
+            }
+            return tip;
+        });
+        setGoal(finish);
+    };
+
     return(
         <div>
         <h1>Goals</h1>
-        <ListOfGoals goals={data}/>
+        <ListOfGoals goals={data} handleClick={handleFinishedClick}/>
         <br/>
         <h1>Tips</h1>
         <ListOfTips tips={data} handleClick={handleGoalClick}/>   
@@ -73,13 +80,13 @@ function ListOfTips(props) {
 
 function Goal(props) {
     return(
-        <li>{props.tip}</li>
+        <li className={props.finished ? "finished" : "ToDo"} onClick={() => props.handleClick(props.tip)}>{props.tip}</li>
     );
 }
 function ListOfGoals(props) {
     let goals = props.goals.map(tip => {
         if(tip.goal == true){
-           return <Goal tip={tip.text}/> 
+           return <Goal tip={tip.text} handleClick={() => props.handleClick(tip.text)} finished={tip.finished}/> 
         }   
     })
     return(

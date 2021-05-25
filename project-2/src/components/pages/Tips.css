@@ -1,11 +1,4 @@
-.show {
-  display: inline-block;
-}
-
-.none {
-  display: none;
-}
-
-ul {
-  display: float;
+.finished {
+  text-decoration: line-through;
+  color: red;
 }
