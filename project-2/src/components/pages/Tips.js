@@ -28,16 +28,11 @@ let goal = [{
 
 }];
 function TipsPage() {
-    const [click, setClick] = useState(true);
-    const handleClick = () => {
-        setClick(!click);       
-    }
-
     const [goals, setGoal] = useState(data);
     let handleGoalClick = (goal) => {
         let goals = data.map(tip => {
             if (tip.text == goal) {
-                tip.goal = true;
+                tip.goal = !tip.goal;
             }
             return tip;
         });
@@ -46,9 +41,11 @@ function TipsPage() {
 
     return(
         <div>
-        <ListOfTips tips={data} handleClick={handleGoalClick}/>   
-        <br/>
+        <h1>Goals</h1>
         <ListOfGoals goals={data}/>
+        <br/>
+        <h1>Tips</h1>
+        <ListOfTips tips={data} handleClick={handleGoalClick}/>   
         </div>
          
     );
@@ -56,7 +53,10 @@ function TipsPage() {
 
 function Tip(props) {
     return(
-        <li className={props.category} onClick={() => props.handleClick(props.tip)}>{props.tip}</li>
+        <li className={props.category}> 
+        <Checkbox handleClick={() => props.handleClick(props.tip)}/>
+        {props.tip}
+        </li>
     );
 }
 
@@ -89,11 +89,10 @@ function ListOfGoals(props) {
     );
 }
 
-function AddButton(props) {
+function Checkbox(props) {
     return(
         <>
-        <button className={props.boolean ? 'show' : 'none'} onClick={props.handleClick}>Add to goals</button>
-        <button className={props.boolean ? 'none' : 'show'} onClick={props.handleClick}>Remove from goals</button>
+        <input type="checkbox" onClick={props.handleClick}/>
         </>   
     );
 }

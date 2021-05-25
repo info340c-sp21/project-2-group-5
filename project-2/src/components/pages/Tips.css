@@ -5,3 +5,7 @@
 .none {
   display: none;
 }
+
+ul {
+  display: float;
+}
