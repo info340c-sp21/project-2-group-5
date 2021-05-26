@@ -1,5 +1,6 @@
 //The page of the tips goes here
 import React, {useState} from 'react';
+import ProgressBar from 'react-bootstrap/ProgressBar'
 import './Tips.css';
 
 const data = [
@@ -52,7 +53,11 @@ function TipsPage() {
         <ListOfGoals goals={data} handleClick={handleFinishedClick}/>
         <br/>
         <h1>Tips</h1>
-        <ListOfTips tips={data} handleClick={handleGoalClick}/>   
+        <ListOfTips tips={data} handleClick={handleGoalClick}/>  
+        <br/>
+        <h1>Progress Bar</h1>
+        <ProgressBar now={60}/>
+        <GoalProgressBar goals={data}/> 
         </div>
          
     );
@@ -80,7 +85,7 @@ function ListOfTips(props) {
 
 function Goal(props) {
     return(
-        <li className={props.finished ? "finished" : "ToDo"} onClick={() => props.handleClick(props.tip)}>{props.tip}</li>
+        <li className={props.finished ? "finished" : "toDo"} onClick={() => props.handleClick(props.tip)}>{props.tip}</li>
     );
 }
 function ListOfGoals(props) {
@@ -99,8 +104,25 @@ function ListOfGoals(props) {
 function Checkbox(props) {
     return(
         <>
-        <input type="checkbox" onClick={props.handleClick}/>
+        <input className="star" type="checkbox" onClick={props.handleClick}/>
         </>   
+    );
+}
+
+function GoalProgressBar(props) {
+    let goalCnt = 0;
+    let finishedCnt = 0;
+    props.goals.map(tip => {
+        if(tip.goal == true) {
+            goalCnt++;
+        }
+        if(tip.finished == true) {
+            finishedCnt++;
+        }
+    })
+    let progress = parseInt((finishedCnt / goalCnt), 10) * 100;
+    return(
+        <ProgressBar now={progress}/>
     );
 }
 

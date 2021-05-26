@@ -1,4 +1,14 @@
 .finished {
   text-decoration: line-through;
   color: red;
+  cursor: pointer;
 }
+
+.toDo {
+  cursor: pointer;
+}
+
+.toDo:hover {
+  color:red;
+}
+
