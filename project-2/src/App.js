@@ -15,7 +15,7 @@ function App() {
         <Route path='/Pro-Tips' exact component={Tips}/>
       </Switch>
       <Footer />
-      </Router>
+    </Router>
   );
 }
 

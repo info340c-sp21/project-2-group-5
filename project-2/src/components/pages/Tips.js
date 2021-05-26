@@ -1,6 +1,6 @@
 //The page of the tips goes here
 import React, {useState} from 'react';
-import ProgressBar from 'react-bootstrap/ProgressBar'
+// import ProgressBar from 'react-bootstrap/ProgressBar'
 import './Tips.css';
 
 const data = [
@@ -103,12 +103,10 @@ function ListOfGoals(props) {
 
 function Checkbox(props) {
     return(
-        <>
-        <input className="star" type="checkbox" onClick={props.handleClick}/>
-        </>   
+        <input className="star" type="checkbox" onClick={props.handleClick}/>  
     );
 }
-
+/*
 function GoalProgressBar(props) {
     let goalCnt = 0;
     let finishedCnt = 0;
@@ -124,6 +122,6 @@ function GoalProgressBar(props) {
     return(
         <ProgressBar now={progress}/>
     );
-}
+}*/
 
 export default TipsPage;
