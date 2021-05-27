@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Pie } from 'react-chartjs-2';
+import './CalculatorChart.css';
 
 export default CalculatorChart;
 
@@ -8,7 +9,7 @@ function CalculatorChart(props) {
     const [formData, setFormData] = useState(null)
 
     return(
-        <div>
+        <div className="flex-calculator">
             <InputForm dataCallback={setFormData}/>
             <RenderChart data={formData}/>
         </div>
@@ -51,20 +52,23 @@ class InputForm extends React.Component {
 
     render() {
         return(
-            <div>
+            <div className="flex-calculator-form">
                 <div>
+                    <h2>Vehicle Emissions</h2>
                     <label for="miles">Miles Per Week</label><br/>
                     <input type="number" id="miles" name="miles" role="input" value={this.state.miles} onChange={this.handleChange}/><br/>
                     <label for="mpg">Average Miles Per Gallon</label><br/>
                     <input type="number" id="mpg" name="mpg" role="input" value={this.state.mpg} onChange={this.handleChange}/><br/>
                 </div>
                 <div>
+                    <h2>Home Emissions</h2>
                     <label for="gas">$ Spent on Natural Gas</label><br/>
                     <input type="number" id="gas" name="gas" role="input" value={this.state.gas} onChange={this.handleChange}/><br/>
                     <label for="electric">$ Spent on Electricty</label><br/>
                     <input type="number" id="electric" name="electric" role="input" value={this.state.electric} onChange={this.handleChange}/><br/>
                 </div>
                 <div>
+                    <h2>Recycling Emissions</h2>
                     <input type="checkbox" id="aluminum" name="aluminum" role="input" value={this.state.aluminum} onChange={this.handleChange}/>
                     <label for="aluminum">Aluminum Steel</label><br/>
                     <input type="checkbox" id="plastic" name="plastic" role="input" value={this.state.plastic} onChange={this.handleChange}/>
@@ -96,7 +100,7 @@ function RenderChart(props) {
                 '']
         };
         return(
-            <div>
+            <div className="flex-calculator-chart">
                 <h2>Hit Render Chart!</h2>
                 <Pie data={nullData} />
             </div>
@@ -121,7 +125,7 @@ function RenderChart(props) {
 
     // render full
     return(
-        <div>
+        <div className="flex-calculator-chart">
             <h2>Your Emissions Breakdown</h2>
             <Pie data={data} />
         </div>
