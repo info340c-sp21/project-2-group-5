@@ -3,6 +3,7 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './components/pages/HomePage'
+import Calculator from './components/pages/Calculator'
 import Tips from './components/pages/Tips'
 import Footer from './components/footer';
 import Comparison from './components/pages/Comparison';
@@ -13,6 +14,7 @@ function App() {
       <Navbar />
       <Switch>
         <Route path='/' exact component={Home}/>
+        <Route path='/Calculator' exact component={Calculator} />
         <Route path='/Comparison' exact component={Comparison}/>
         <Route path='/Pro-Tips' exact component={Tips}/>
       </Switch>
