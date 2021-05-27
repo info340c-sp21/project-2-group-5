@@ -1,6 +1,6 @@
 //The page of the tips goes here
 import React, {useState} from 'react';
-// import ProgressBar from 'react-bootstrap/ProgressBar'
+import ProgressBar from 'react-bootstrap/ProgressBar'
 import './Tips.css';
 
 const data = [
@@ -48,18 +48,12 @@ function TipsPage() {
     };
 
     return(
-        <div>
-        <h1>Goals</h1>
-        <ListOfGoals goals={data} handleClick={handleFinishedClick}/>
-        <br/>
-        <h1>Tips</h1>
-        <ListOfTips tips={data} handleClick={handleGoalClick}/>  
-        <br/>
-        <h1>Progress Bar</h1>
-        <ProgressBar now={60}/>
-        <GoalProgressBar goals={data}/> 
-        </div>
-         
+        <div className="container">
+        <ListOfTips tips={data} handleClick={handleGoalClick}/>
+        <ListOfGoals goals={data} handleClick={handleFinishedClick}/> 
+        <div className="break"></div> 
+        {/*<GoalProgressBar goals={data} /> */}       
+        </div>    
     );
 }
 
@@ -77,9 +71,12 @@ function ListOfTips(props) {
         return <Tip tip={tip.text} category={tip.category} handleClick={() => props.handleClick(tip.text)}/>;
     })
     return(
+        <div className="flex-item">
+        <h1>Tips</h1>
         <ul>
            {tips} 
         </ul>
+        </div>
     )
 }
 
@@ -95,9 +92,12 @@ function ListOfGoals(props) {
         }   
     })
     return(
-        <ul>
+        <div className="flex-item">
+        <h1>Goals</h1>
+        <ul className="goal-list">
            {goals} 
         </ul>
+        </div>
     );
 }
 
@@ -106,7 +106,7 @@ function Checkbox(props) {
         <input className="star" type="checkbox" onClick={props.handleClick}/>  
     );
 }
-/*
+
 function GoalProgressBar(props) {
     let goalCnt = 0;
     let finishedCnt = 0;
@@ -120,8 +120,11 @@ function GoalProgressBar(props) {
     })
     let progress = parseInt((finishedCnt / goalCnt), 10) * 100;
     return(
+        <div className="flex-item">
+        <h1>Progress Bar</h1>
         <ProgressBar now={progress}/>
+        </div>
     );
-}*/
+}
 
 export default TipsPage;
