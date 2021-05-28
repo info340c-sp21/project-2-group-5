@@ -80,7 +80,7 @@ class InputForm extends React.Component {
                     <input type="checkbox" id="magazines" name="magazines" role="input" value={this.state.magazines} onChange={this.handleChange}/>
                     <label for="magazines">Magazines</label><br/>
                 </div>
-                <button onClick={this.handleClick}>Render Chart</button>
+                <button className='calSubmit' onClick={this.handleClick}>Get Result</button>
             </div>
         );
     }
@@ -93,7 +93,7 @@ function RenderChart(props) {
             datasets: [{
                 data: [1],
                 backgroundColor: [
-                'rgba(105, 105, 105, 0.7)'
+                'rgba(123, 239, 178, 1)'
                 ]
             }],
             labels: [
@@ -101,7 +101,7 @@ function RenderChart(props) {
         };
         return(
             <div className="flex-calculator-chart">
-                <h2>Hit Render Chart!</h2>
+                <h2>Don't forget to hit get results!</h2>
                 <Pie data={nullData} />
             </div>
         );

@@ -7,7 +7,7 @@ export default CalculatorPage;
 
 function CalculatorPage(props) {
     return(
-        <div>
+        <div className="instructions">
             <Instructions />
             <Calculator />
         </div>

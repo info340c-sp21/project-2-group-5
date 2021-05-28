@@ -28,7 +28,7 @@ function Cards() {
             <Card
               src='images/compare.jpg'
               text='Carbon Footprint Comparison'
-              path='/compare'
+              path='/comparison'
             />
           </ul>
           <ul className='cards__items'>
