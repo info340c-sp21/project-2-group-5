@@ -1,6 +1,29 @@
 @import "~react-vis/dist/style";
 
+h1 {
+    padding-top: 2rem;
+}
+
+.chart-container {
+    display: flex;
+}
+
+#comparison-chart {
+    padding-left: 3rem;
+    padding-bottom: 3rem;
+}
+
+.description {
+    padding: 3rem;
+    padding-bottom: 2rem;
+}
 
 #dropdown {
+    padding: 3rem;
     width: 30%;
+}
+
+#chart-title {
+    font-size: 150%;
+    text-align: center;
 }

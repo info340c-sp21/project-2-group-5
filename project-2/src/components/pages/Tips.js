@@ -1,6 +1,6 @@
 //The page of the tips goes here
 import React, {useState} from 'react';
-import ProgressBar from 'react-bootstrap/ProgressBar'
+//import ProgressBar from 'react-bootstrap/ProgressBar'
 import './Tips.css';
 
 const data = [
