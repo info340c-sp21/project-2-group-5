@@ -1,6 +1,5 @@
 import React from 'react';
 import '../App.css';
-import { Button } from './Button';
 import './landing.css';
 
 function Landing() {
@@ -10,21 +9,8 @@ function Landing() {
       <h1>Welcome to Grenville</h1>
       <p>Let's live a greener life!</p>
       <div className='landing-btns'>
-        <Button
-          className='btns'
-          buttonStyle='btn--outline'
-          buttonSize='btn--large'
-        >
-          Log In
-        </Button>
-        <Button
-          className='btns'
-          buttonStyle='btn--primary'
-          buttonSize='btn--large'
-          onClick={console.log('hey')}
-        >
-            Sign Up
-        </Button>
+        <button className='btn1'>Log In</button>
+        <button className='btn2'>Sign Up</button>
       </div>
     </div>
   );

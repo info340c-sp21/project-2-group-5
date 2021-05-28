@@ -33,10 +33,39 @@ video {
     margin-top: 32px;
   }
   
-  .landing-btns .btn {
+  .landing-btns .btn1, .landing-btns .btn2{
     margin: 6px;
+  
   }
 
+.btn1 {
+  background-color: transparent;
+  border: 1px solid #182628;
+  color:white;
+  padding: 8px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  }
+  .btn2 {
+    background-color: white;
+    border: none;
+    color: #3B945E;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    }
+
+    .btn1:hover {
+      color: #3B945E;
+      background-color: #fff;
+      border: none;
+      transition: all 0.3s ease-out;
+      transition: 250ms;
+    }
   
   @media screen and (max-width: 960px) {
     .landing-container > h1 {
@@ -53,14 +82,5 @@ video {
   
     .land-container > p {
       font-size: 30px;
-    }
-  
-    .btn-mobile {
-      display: block;
-      text-decoration: none;
-    }
-  
-    .btn {
-      width: 100%;
     }
   }

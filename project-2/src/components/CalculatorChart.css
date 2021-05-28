@@ -1,0 +1,39 @@
+.flex-calculator {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: auto;
+    padding: 1rem 20% 12.5rem;
+}
+
+.flex-calculator-form {
+    flex-basis: 50%;
+}
+
+.flex-calculator-form > div {
+    margin: 3rem 0;
+}
+
+.flex-calculator-chart {
+    flex-basis: 50%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+.calSubmit {
+    background-color: #3B945E;
+    border:none;
+    border-radius: 2px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.calSubmit:hover{
+    background-color: rgba(255, 206, 86, 0.5);
+    color: #57BA98;
+}
