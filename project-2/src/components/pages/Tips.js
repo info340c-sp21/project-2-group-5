@@ -1,6 +1,9 @@
 //The page of the tips goes here
 import React, {useState} from 'react';
-//import ProgressBar from 'react-bootstrap/ProgressBar'
+import ProgressBar from 'react-bootstrap/ProgressBar';
+
+import Card from 'react-bootstrap/Card';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './Tips.css';
 
 const data = [
@@ -51,8 +54,8 @@ function TipsPage() {
         <div className="container">
         <ListOfTips tips={data} handleClick={handleGoalClick}/>
         <ListOfGoals goals={data} handleClick={handleFinishedClick}/> 
-        <div className="break"></div> 
-        {/*<GoalProgressBar goals={data} /> */}       
+        <div className="break"></div>
+        <GoalProgressBar goals={data}/>  
         </div>    
     );
 }
