@@ -32,6 +32,7 @@ function TipsPage() {
         let goals = data.map(tip => {
             if (tip.text == goal) {
                 tip.goal = !tip.goal;
+                tip.finished = false;
             }
             return tip;
         });
@@ -109,8 +110,8 @@ function Checkbox(props) {
 }
 
 function GoalProgressBar(props) {
-    let goalCnt = 0;
-    let finishedCnt = 0;
+    let goalCnt = 0.0;
+    let finishedCnt = 0.0;
     props.goals.map(tip => {
         if(tip.goal == true) {
             goalCnt++;
@@ -119,11 +120,17 @@ function GoalProgressBar(props) {
             finishedCnt++;
         }
     })
-    let progress = parseInt((finishedCnt / goalCnt), 10) * 100;
+    //let progress = parseInt((finishedCnt / goalCnt), 10) * 100;
+    let progress = Math.round((finishedCnt / goalCnt)*100);
+    if (goalCnt == 0) {
+        return(
+            <></>
+        );
+    }
     return(
         <div className="flex-item">
-        <h1>Progress Bar</h1>
-        <ProgressBar now={progress}/>
+        <h1>Progress</h1>
+        <ProgressBar className="progressBar" now={progress} label={`${progress}%`} animated/>
         </div>
     );
 }

@@ -54,3 +54,9 @@ li {
 input {
   margin-right: 5px;
 }
+
+.progressBar {
+  margin-top: 2rem;
+  height: 2rem;
+  width: 20rem;
+}
