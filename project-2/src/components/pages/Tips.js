@@ -1,8 +1,6 @@
 //The page of the tips goes here
 import React, {useState} from 'react';
-import ProgressBar from 'react-bootstrap/ProgressBar';
-
-import Card from 'react-bootstrap/Card';
+import {ProgressBar} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Tips.css';
 
