@@ -9,7 +9,7 @@ function CalculatorPage(props) {
     return(
         <div className="instructions">
             <Instructions />
-            <Calculator />
+            <Calculator user={props.user}/>
         </div>
     );
 }

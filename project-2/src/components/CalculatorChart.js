@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import firebase from 'firebase';
 import { Pie } from 'react-chartjs-2';
 import './CalculatorChart.css';
 
@@ -10,7 +11,7 @@ function CalculatorChart(props) {
 
     return(
         <div className="flex-calculator">
-            <InputForm dataCallback={setFormData}/>
+            <InputForm dataCallback={setFormData} user={props.user}/>
             <RenderChart data={formData}/>
         </div>
     );
@@ -31,12 +32,14 @@ class InputForm extends React.Component {
             newspaper:  false,
             magazines: false
         };
+        this.hasSubmitted = false;
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick = (event) => {
         event.preventDefault();
+        this.hasSubmitted = true;
         this.props.dataCallback(this.state);
     }
 
@@ -50,7 +53,33 @@ class InputForm extends React.Component {
         });
     }
 
+    saveButton = () => {
+        if (!this.props.user || !this.hasSubmitted) {
+            return (
+                <button className="lockedButton calSubmit">Save Results</button>
+            );
+        } else {
+            return (
+                <button className="unlockedButton calSubmit" onClick={this.saveResults}>Save Results</button>
+            );
+        }
+    }
+
+    saveResults = (event) => {
+        event.preventDefault();
+        let data = processData(this.state);
+        let newEntry = {
+            time: firebase.database.ServerValue.TIMESTAMP,
+            vehicle: data[0],
+            home: data[1],
+            recycle: data[2]
+        }
+        firebase.database().ref(`calculator/${this.props.user.uid}`).push(newEntry);
+    }
+
     render() {
+        let button = this.saveButton();
+
         return(
             <div className="flex-calculator-form">
                 <div>
@@ -80,7 +109,10 @@ class InputForm extends React.Component {
                     <input type="checkbox" id="magazines" name="magazines" role="input" value={this.state.magazines} onChange={this.handleChange}/>
                     <label for="magazines">Magazines</label><br/>
                 </div>
-                <button className='calSubmit' onClick={this.handleClick}>Get Result</button>
+                <div>
+                    <button className='calSubmit' onClick={this.handleClick}>Get Result</button>
+                    {button}
+                </div>
             </div>
         );
     }
@@ -128,6 +160,22 @@ function RenderChart(props) {
         <div className="flex-calculator-chart">
             <h2>Your Emissions Breakdown</h2>
             <Pie data={data} />
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <th>Vehicle</th>
+                    <th>Home</th>
+                    <th>Recycle</th>
+                    <th>Total</th>
+                </tr>
+                <tr>
+                    <td>Current</td>
+                    <td>{Math.round(values[0])}</td>
+                    <td>{Math.round(values[1])}</td>
+                    <td>{Math.round(values[2])}</td>
+                    <td>{Math.round(values[0] + values[1] + values[2])}</td>
+                </tr>
+            </table>
         </div>
     );
 }

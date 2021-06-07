@@ -29,7 +29,7 @@ function App() {
       <Switch>
         <Route exact path='/'> <Home user={user}/> </Route>
         <Route exact path='/Login'> <LoginPage user={user}/> </Route>
-        <Route path='/Calculator' exact component={Calculator} />
+        <Route exact path='/Calculator'> <Calculator user={user}/></Route>
         <Route path='/Comparison' exact component={Comparison}/>
         <Route path='/Pro-Tips' exact component={Tips}/>
       </Switch>
