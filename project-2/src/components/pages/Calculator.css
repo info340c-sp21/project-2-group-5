@@ -1,3 +1,18 @@
 .instructions {
     margin-top: 1em;
 }
+
+.Calculator {
+    margin-top: 0;
+}
+
+.page {
+    margin-bottom: 4rem;
+}
+
+#bannerimage1 {
+    width: 100%;
+    background-image: url("imgs/calculator.jpg");
+    height: 120px;
+    background-position: center;
+}

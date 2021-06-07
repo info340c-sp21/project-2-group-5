@@ -12,8 +12,12 @@ function CalculatorChart(props) {
 
     return(
         <div className="flex-calculator">
+            <div className="flex-item">
             <InputForm dataCallback={setFormData} user={props.user}/>
+            </div>
+            <div className="flex-item">
             <RenderChart data={formData} user={props.user}/>
+            </div>
         </div>
     );
 }

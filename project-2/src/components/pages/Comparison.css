@@ -1,4 +1,8 @@
-@import "~react-vis/dist/style"; */
+@import "~react-vis/dist/style"; 
+
+.page {
+    margin-bottom: 4rem;
+}
 
 h1 {
     padding-top: 2rem;
@@ -6,16 +10,26 @@ h1 {
 
 .chart-container {
     display: flex;
+    flex-flow: column;
+}
+
+.flex-graph {
+    order: 2;
+}
+
+.flex-dropdown {
+    order: 1;
 }
 
 #comparison-chart {
-    padding-left: 3rem;
-    padding-bottom: 3rem;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+    justify-content: center;
 }
 
 .description {
     padding: 3rem;
-    padding-bottom: 2rem;
+    padding-bottom: 0rem;
 }
 
 #dropdown {
@@ -25,4 +39,42 @@ h1 {
 #chart-title {
     font-size: 150%;
     text-align: center;
+}
+.multiselect {
+    width: 60%;
+}
+
+.Chart {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#bannerimage {
+    width: 100%;
+    background-image: url("imgs/comparison.jpg");
+    height: 120px;
+    background-position: center;
+}
+
+@media (min-width: 1000px) {
+    .chart-container {
+        flex-flow: row;
+        justify-content: center;
+    }
+
+    .flex-graph {
+        order: 1;
+    }
+    
+    .flex-dropdown {
+        order: 2;
+    }
+
+    .description {
+        padding-bottom: 2rem;
+    }
+
+    .ChartLabel text{
+        font-size: 20px;
+    }
 }

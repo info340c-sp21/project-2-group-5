@@ -7,9 +7,12 @@ export default CalculatorPage;
 
 function CalculatorPage(props) {
     return(
-        <div className="instructions">
+        <div className="page">
+        <div id="bannerimage1"></div>
+        <div className="instructions">  
             <Instructions />
             <Calculator user={props.user}/>
+        </div>
         </div>
     );
 }

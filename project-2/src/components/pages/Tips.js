@@ -52,11 +52,14 @@ function TipsPage() {
     };
 
     return(
+        <div className="page">
+        <div id="bannerimage2"></div>
         <div className="container">
         <ListOfTips tips={data} handleClick={handleGoalClick}/>
         <ListOfGoals goals={data} handleClick={handleFinishedClick}/> 
         <div className="break"></div>
         <GoalProgressBar goals={data}/>  
+        </div>
         </div>    
     );
 }
