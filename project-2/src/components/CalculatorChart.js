@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import firebase from 'firebase';
+import firebase, { firestore } from 'firebase';
 import { Pie } from 'react-chartjs-2';
 import './CalculatorChart.css';
+import 'firebase/database';
 
 export default CalculatorChart;
 
@@ -12,7 +13,7 @@ function CalculatorChart(props) {
     return(
         <div className="flex-calculator">
             <InputForm dataCallback={setFormData} user={props.user}/>
-            <RenderChart data={formData}/>
+            <RenderChart data={formData} user={props.user}/>
         </div>
     );
 }
@@ -69,7 +70,7 @@ class InputForm extends React.Component {
         event.preventDefault();
         let data = processData(this.state);
         let newEntry = {
-            time: firebase.database.ServerValue.TIMESTAMP,
+            time: new Date().toDateString(),
             vehicle: data[0],
             home: data[1],
             recycle: data[2]
@@ -119,6 +120,54 @@ class InputForm extends React.Component {
 }
 
 function RenderChart(props) {
+    const [historyData, setHistoryData] = useState(null);
+    let historyButton = null;
+    let history = null;
+
+    const getHistory = () => {
+        firebase.database().ref(`calculator/${props.user.uid}`).once('value')
+            .then((snapshot) => {
+                console.log('test');
+                console.log(snapshot.val());
+                setHistoryData(snapshot.val());
+        });
+        console.log(historyData);
+    }
+
+    // Style history button here
+    if (!props.user) {
+        historyButton = <p>Register to save your history!</p>
+    } else {
+        historyButton = <button className="unlockedButton calSubmit" onClick={getHistory}>See History</button>
+    }
+
+    if (historyData) {
+        let historyItemList = Object.keys(historyData).map((key) => {
+            let item = {...historyData[key]};
+            return (
+                <HistoryItem key={key} data={item} />
+            );
+        });
+
+        history = (
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Vehicle</th>
+                        <th>Home</th>
+                        <th>Recycle</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {historyItemList}
+                </tbody>
+            </table>
+        );
+    }
+
+
     if(props.data == null) {
         // Render Empty Chart, first load
         let nullData = {
@@ -135,6 +184,8 @@ function RenderChart(props) {
             <div className="flex-calculator-chart">
                 <h2>Don't forget to hit get results!</h2>
                 <Pie data={nullData} />
+                {historyButton}
+                {history}
             </div>
         );
     }
@@ -160,24 +211,43 @@ function RenderChart(props) {
         <div className="flex-calculator-chart">
             <h2>Your Emissions Breakdown</h2>
             <Pie data={data} />
+            <h3>As a table</h3>
             <table>
-                <tr>
-                    <th>Date</th>
-                    <th>Vehicle</th>
-                    <th>Home</th>
-                    <th>Recycle</th>
-                    <th>Total</th>
-                </tr>
-                <tr>
-                    <td>Current</td>
-                    <td>{Math.round(values[0])}</td>
-                    <td>{Math.round(values[1])}</td>
-                    <td>{Math.round(values[2])}</td>
-                    <td>{Math.round(values[0] + values[1] + values[2])}</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Vehicle</th>
+                        <th>Home</th>
+                        <th>Recycle</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{Math.round(values[0])}</td>
+                        <td>{Math.round(values[1])}</td>
+                        <td>{Math.round(values[2])}</td>
+                        <td>{Math.round(values[0] + values[1] + values[2])}</td>
+                    </tr>
+                </tbody>
             </table>
+            {historyButton}
+            {history}
         </div>
     );
+}
+
+function HistoryItem(props) {
+    let itemDate = new Date(props.data.time);
+    let dateString = (itemDate.getMonth() + 1) + "/" + itemDate.getDate() + "/" + itemDate.getFullYear();
+    return (
+        <tr>
+            <td>{dateString}</td>
+            <td>{Math.round(props.data.vehicle)}</td>
+            <td>{Math.round(props.data.home)}</td>
+            <td>{Math.round(props.data.recycle)}</td>
+            <td>{Math.round(props.data.vehicle + props.data.home + props.data.recycle)}</td>
+        </tr>
+    )
 }
 
 function processData(data) {
