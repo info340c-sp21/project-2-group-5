@@ -22,9 +22,9 @@ h1 {
 }
 
 #comparison-chart {
-    padding-left: 1rem;
     padding-bottom: 1rem;
-    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .description {
@@ -33,18 +33,19 @@ h1 {
 }
 
 #dropdown {
+    margin-right: auto;
+    margin-left: auto;
     padding: 3rem;
+    width: 60%;
 }
 
 #chart-title {
     font-size: 150%;
     text-align: center;
-}
-.multiselect {
-    width: 60%;
+    padding-bottom: 0.5rem;
 }
 
-.Chart {
+.XYPlot {
     margin-left: auto;
     margin-right: auto;
 }
@@ -76,5 +77,17 @@ h1 {
 
     .ChartLabel text{
         font-size: 20px;
+    }
+
+    #dropdown {
+        margin-right: 2rem;
+        margin-left: 0rem;
+        padding: 3rem;
+        width: 20rem;
+    }
+
+    .XYPlot {
+        margin-left: 2rem;
+        margin-right: 0rem;
     }
 }
