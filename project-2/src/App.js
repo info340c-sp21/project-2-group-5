@@ -9,6 +9,7 @@ import Calculator from './components/pages/Calculator';
 import Tips from './components/pages/Tips';
 import Footer from './components/footer';
 import Comparison from './components/pages/Comparison';
+import Concepts from './components/pages/Concepts'
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -32,6 +33,7 @@ function App() {
         <Route exact path='/Calculator'> <Calculator user={user}/></Route>
         <Route path='/Comparison' exact component={Comparison}/>
         <Route path='/Pro-Tips' exact component={Tips}/>
+        <Route path='/Feature-TBD' exact component={Concepts}/>
       </Switch>
       <Footer />
     </Router>
