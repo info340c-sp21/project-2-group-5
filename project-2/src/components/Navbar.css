@@ -17,6 +17,7 @@
   align-items: center;
   height: 80px;
   max-width: 1500px;
+  padding-left: 20px;
 }
 
 .navbar-logo {
@@ -30,7 +31,9 @@
   align-items: center;
 }
 
-
+.navbar-logo:hover {
+  color:#fff;
+}
 .nav-menu {
   display: grid;
   grid-template-columns: repeat(5, auto);
@@ -47,6 +50,8 @@
 
 .nav-item {
   height: 80px;
+  margin-right: 32px;
+
 }
 
 .nav-links {
@@ -60,6 +65,7 @@
 
 .nav-links:hover {
   border-bottom: 4px solid #fff;
+  color: #fff;
 }
 
 .fa-bars {
@@ -110,6 +116,7 @@
     background-color: #fff;
     color: #3B945E;
     border-radius: 0;
+    /* width: 90%; */
   }
 
   .navbar-logo {
@@ -147,6 +154,7 @@
     padding: 14px 20px;
     border: 1px solid #fff;
     transition: all 0.3s ease-out;
+ 
   }
 
   .nav-links-mobile:hover {

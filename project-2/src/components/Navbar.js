@@ -47,7 +47,7 @@ function Navbar(props) {
                 </div>
                 <div className= 'nav-option'>
                 <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-                  {loginButton}
+                  {/* {loginButton} */}
                   <li className='nav-item'>
                     <Link to='/Calculator' className='nav-links' onClick={closeMenu}>
                       Calculator
