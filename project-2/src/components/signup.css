@@ -1,0 +1,80 @@
+/* form {
+    width: 300px;
+    text-align: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 300px;
+} */
+
+form {
+    width: 200px;
+    text-align: center;
+    color:#252e48;
+    margin-left: 50px;
+    margin-top: 10px;
+}
+.button-group {
+    margin-top: 20px;
+}
+.button-group .sign-up,.button-group .sign-up {
+    margin: 20px;
+}
+.sign-up {
+    background-color: #3B945E;
+    border:none;
+    border-radius: 2px;
+    color: white;
+    padding: 10px 28px;
+    margin-right: 1rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+.sign-in {
+    background-color: #3B945E;
+    border:none;
+    border-radius: 2px;
+    color: white;
+    padding: 10px 28px;
+    margin-right: 1rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+.sign-up:hover{
+    background-color:rgba(255, 206, 86, 0.5);
+    color: #3B945E;
+}
+.sign-in:hover{
+    background-color:rgba(255, 206, 86, 0.5);
+    color:#ffb6c1;
+}
+
+@media only screen and (min-width: 500px) {
+    form {
+        width: 300px;
+        margin-left: 105px;
+    }
+}
+@media only screen and (min-width: 789px) {
+    form {
+        margin-left: 270px;
+    }
+}
+@media only screen and (min-width: 980px) {
+    form {
+        margin-left: 370px;
+    }
+}
+
+@media only screen and (min-width: 1180) {
+    form {
+        margin-left: 470px;
+    }
+}

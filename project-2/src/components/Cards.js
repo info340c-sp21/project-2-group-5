@@ -18,7 +18,7 @@ function Cards() {
             <ul className='cards__items'>
             <Card
               src='images/tips.jpg'
-              text='Pro Tips for Healthy Life Styles'
+              text='Carbon Footprint Pro Tips'
               path='/pro-tips'
             />
           </ul>
@@ -27,14 +27,14 @@ function Cards() {
           <ul className='cards__items'>
             <Card
               src='images/compare.jpg'
-              text='Carbon Footprint Comparison'
+              text='Carbon Footprint Compare'
               path='/comparison'
             />
           </ul>
           <ul className='cards__items'>
             <Card
               src='images/nature.jpg'
-              text='Carbon Footprint Content TBD'
+              text='Why Carbon Footprint'
               path='/'
             />
           </ul>

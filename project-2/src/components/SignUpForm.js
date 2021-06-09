@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './signup.css';
 
 // import css
 
@@ -72,8 +73,10 @@ function SignUpForm(props) {
 
       {/* buttons */}
       <div className="form-group">
-        <button className="btn btn-primary mr-2" onClick={handleSignUp}>Sign-up</button>
-        <button className="btn btn-primary" onClick={handleSignIn}>Sign-in</button>
+        <div className="button-group">
+        <button className="sign-up" onClick={handleSignUp}>Sign-Up</button>
+        <button className="sign-in" onClick={handleSignIn}>Sign-In</button>
+        </div>
       </div>
     </form>
   )
