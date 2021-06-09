@@ -41,7 +41,7 @@ function LoginPage (props){
     } else {
         content = (
             <div>
-                <p>Already logged in</p>
+                <p>Log-in successfully! Let's expore Grenville!</p>
             </div>
         );
     }

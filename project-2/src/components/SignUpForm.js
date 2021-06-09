@@ -63,7 +63,7 @@ function SignUpForm(props) {
 
       {/* handle */}
       <div className="form-group">
-        <label htmlFor="handle">Handle</label>
+        <label htmlFor="handle">User Name</label>
         <input className="form-control" 
           id="handle" 
           name="handle"

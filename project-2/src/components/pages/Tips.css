@@ -83,3 +83,7 @@ img {
   height: 120px;
   background-position: center;
 }
+.flex-item {
+  margin-top: 0;
+  padding-top: 0;
+}

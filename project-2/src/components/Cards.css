@@ -16,11 +16,12 @@
     flex-direction: row;
     position: relative;
     margin: 50px 0 45px;
+    margin-right: 25px;
   }
   
   .cards__items {
     margin-bottom: 24px;
-    width: 200px;
+    width: 210px;
   }
   .cards__item:hover {
     background-color: #b0ff9d;
