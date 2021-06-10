@@ -1,27 +1,30 @@
 //The page of the tips goes here
 import React, {useState} from 'react';
-//import ProgressBar from 'react-bootstrap/ProgressBar'
+import {ProgressBar} from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './Tips.css';
 
 const data = [
   {
-    "category": "a",
     "text":"Eliminate single-use plastic",
   }, {
-    "category": "a",
     "text":"Cycle to work",
   }, {
-    "category": "b",
     "text":"Turn off the lights",
   }, {
-    "category": "a",
     "text":"Use less water",
   }, {
-    "category": "a",
     "text":"Switch to renewables",
   }, {
-    "category": "b",
-    "text":"Use public transport",
+    "text":"Insulate your home",
+  }, {
+    "text":"Eat fewer red meat",
+  }, {
+    "text":"Raise awareness",
+  }, {
+    "text":"Buy local food",
+  }, {
+    "text":"Recycle more",
   }
 ];
 
@@ -31,6 +34,7 @@ function TipsPage() {
         let goals = data.map(tip => {
             if (tip.text == goal) {
                 tip.goal = !tip.goal;
+                tip.finished = false;
             }
             return tip;
         });
@@ -48,11 +52,14 @@ function TipsPage() {
     };
 
     return(
+        <div className="page">
+        <div id="bannerimage2"></div>
         <div className="container">
         <ListOfTips tips={data} handleClick={handleGoalClick}/>
         <ListOfGoals goals={data} handleClick={handleFinishedClick}/> 
-        <div className="break"></div> 
-        {/*<GoalProgressBar goals={data} /> */}       
+        <div className="break"></div>
+        <GoalProgressBar goals={data}/>  
+        </div>
         </div>    
     );
 }
@@ -108,8 +115,8 @@ function Checkbox(props) {
 }
 
 function GoalProgressBar(props) {
-    let goalCnt = 0;
-    let finishedCnt = 0;
+    let goalCnt = 0.0;
+    let finishedCnt = 0.0;
     props.goals.map(tip => {
         if(tip.goal == true) {
             goalCnt++;
@@ -118,11 +125,30 @@ function GoalProgressBar(props) {
             finishedCnt++;
         }
     })
-    let progress = parseInt((finishedCnt / goalCnt), 10) * 100;
+    let progress = Math.round((finishedCnt / goalCnt) * 100);
+    if (goalCnt == 0) {
+        return(
+            <></>
+        );
+    }
+    if (progress == 100) {
+        return(
+            <>
+            <div className="flex-item">
+            <h1>Progress</h1>
+            <ProgressBar className="progressBar" now={progress} label={`${progress}%`} animated/>
+            </div>
+            <div className="break2"></div>
+            <div className="flex-item">
+            <img src="images/fire-emoji.jpg"/><img src="images/fire-emoji.jpg"/><img src="images/fire-emoji.jpg"/>
+            </div>
+            </>   
+        );
+    }
     return(
         <div className="flex-item">
-        <h1>Progress Bar</h1>
-        <ProgressBar now={progress}/>
+        <h1>Progress</h1>
+        <ProgressBar className="progressBar" now={progress} label={`${progress}%`} animated/>
         </div>
     );
 }

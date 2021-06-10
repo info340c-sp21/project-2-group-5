@@ -1,13 +1,40 @@
 import React, {useState, useEffect} from 'react'
-import { Link } from 'react-router-dom';
+import firebase from 'firebase';
+import { propTypes } from 'react-bootstrap/esm/Image';
+import { Link, Redirect } from 'react-router-dom';
 import './Navbar.css';
-function Navbar() {
+function Navbar(props) {
 
     const [click, setClick] = useState(false);
 
     const handleClick = () => setClick(!click);
 
-    const closeMenu = () => setClick(false);;
+    const closeMenu = () => setClick(false);
+    
+    const handleSignOut = () => {
+      firebase.auth().signOut()
+          .catch((error) => console.log(error.message));
+    }
+
+    let loginButton = null;
+    if (!props.user) {
+      loginButton = (
+      <li className='nav-item'>
+          <Link to='/Login' className='nav-links' onClick={closeMenu}>
+            Sign In
+          </Link>
+      </li>
+      )
+    } else {
+      loginButton = (
+      <li className='nav-item'>
+        <p className='nav-links' onClick={handleSignOut}>
+          Sign Out
+        </p>
+        <Redirect to="/" />
+      </li>
+      )
+    }
 
     return (
           <nav className= "navbar">
@@ -20,6 +47,7 @@ function Navbar() {
                 </div>
                 <div className= 'nav-option'>
                 <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+                  {/* {loginButton} */}
                   <li className='nav-item'>
                     <Link to='/Calculator' className='nav-links' onClick={closeMenu}>
                       Calculator
@@ -37,7 +65,7 @@ function Navbar() {
                   </li>
                   <li className='nav-item'>
                     <Link to='/Feature-TBD' className='nav-links' onClick={closeMenu}>
-                      Feature TBD
+                      Our Concepts
                     </Link>
                   </li>
                 </ul>

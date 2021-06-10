@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import firebase, { firestore } from 'firebase';
 import { Pie } from 'react-chartjs-2';
 import './CalculatorChart.css';
+import 'firebase/database';
 
 export default CalculatorChart;
 
@@ -10,8 +12,12 @@ function CalculatorChart(props) {
 
     return(
         <div className="flex-calculator">
-            <InputForm dataCallback={setFormData}/>
-            <RenderChart data={formData}/>
+            <div className="flex-item">
+            <InputForm dataCallback={setFormData} user={props.user}/>
+            </div>
+            <div className="flex-item">
+            <RenderChart data={formData} user={props.user}/>
+            </div>
         </div>
     );
 }
@@ -31,12 +37,14 @@ class InputForm extends React.Component {
             newspaper:  false,
             magazines: false
         };
+        this.hasSubmitted = false;
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick = (event) => {
         event.preventDefault();
+        this.hasSubmitted = true;
         this.props.dataCallback(this.state);
     }
 
@@ -50,7 +58,33 @@ class InputForm extends React.Component {
         });
     }
 
+    saveButton = () => {
+        if (!this.props.user || !this.hasSubmitted) {
+            return (
+                <button className="lockedButton calSubmit">Save Results</button>
+            );
+        } else {
+            return (
+                <button className="unlockedButton calSubmit" onClick={this.saveResults}>Save Results</button>
+            );
+        }
+    }
+
+    saveResults = (event) => {
+        event.preventDefault();
+        let data = processData(this.state);
+        let newEntry = {
+            time: new Date().toDateString(),
+            vehicle: data[0],
+            home: data[1],
+            recycle: data[2]
+        }
+        firebase.database().ref(`calculator/${this.props.user.uid}`).push(newEntry);
+    }
+
     render() {
+        let button = this.saveButton();
+
         return(
             <div className="flex-calculator-form">
                 <div>
@@ -80,13 +114,64 @@ class InputForm extends React.Component {
                     <input type="checkbox" id="magazines" name="magazines" role="input" value={this.state.magazines} onChange={this.handleChange}/>
                     <label for="magazines">Magazines</label><br/>
                 </div>
-                <button className='calSubmit' onClick={this.handleClick}>Get Result</button>
+                <div>
+                    <button className='calSubmit' onClick={this.handleClick}>Get Result</button>
+                    {button}
+                </div>
             </div>
         );
     }
 }
 
 function RenderChart(props) {
+    const [historyData, setHistoryData] = useState(null);
+    let historyButton = null;
+    let history = null;
+
+    const getHistory = () => {
+        firebase.database().ref(`calculator/${props.user.uid}`).once('value')
+            .then((snapshot) => {
+                console.log('test');
+                console.log(snapshot.val());
+                setHistoryData(snapshot.val());
+        });
+        console.log(historyData);
+    }
+
+    // Style history button here
+    if (!props.user) {
+        historyButton = <p>Register to save your history!</p>
+    } else {
+        historyButton = <button className="unlockedButton calSubmit" onClick={getHistory}>See History</button>
+    }
+
+    if (historyData) {
+        let historyItemList = Object.keys(historyData).map((key) => {
+            let item = {...historyData[key]};
+            return (
+                <HistoryItem key={key} data={item} />
+            );
+        });
+
+        history = (
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Vehicle</th>
+                        <th>Home</th>
+                        <th>Recycle</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {historyItemList}
+                </tbody>
+            </table>
+        );
+    }
+
+
     if(props.data == null) {
         // Render Empty Chart, first load
         let nullData = {
@@ -103,6 +188,8 @@ function RenderChart(props) {
             <div className="flex-calculator-chart">
                 <h2>Don't forget to hit get results!</h2>
                 <Pie data={nullData} />
+                {historyButton}
+                {history}
             </div>
         );
     }
@@ -128,8 +215,43 @@ function RenderChart(props) {
         <div className="flex-calculator-chart">
             <h2>Your Emissions Breakdown</h2>
             <Pie data={data} />
+            <h3>As a table</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Vehicle</th>
+                        <th>Home</th>
+                        <th>Recycle</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{Math.round(values[0])}</td>
+                        <td>{Math.round(values[1])}</td>
+                        <td>{Math.round(values[2])}</td>
+                        <td>{Math.round(values[0] + values[1] + values[2])}</td>
+                    </tr>
+                </tbody>
+            </table>
+            {historyButton}
+            {history}
         </div>
     );
+}
+
+function HistoryItem(props) {
+    let itemDate = new Date(props.data.time);
+    let dateString = (itemDate.getMonth() + 1) + "/" + itemDate.getDate() + "/" + itemDate.getFullYear();
+    return (
+        <tr>
+            <td>{dateString}</td>
+            <td>{Math.round(props.data.vehicle)}</td>
+            <td>{Math.round(props.data.home)}</td>
+            <td>{Math.round(props.data.recycle)}</td>
+            <td>{Math.round(props.data.vehicle + props.data.home + props.data.recycle)}</td>
+        </tr>
+    )
 }
 
 function processData(data) {

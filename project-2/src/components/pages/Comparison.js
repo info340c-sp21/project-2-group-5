@@ -1,6 +1,6 @@
 //The page of the Comparison goes here
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import '../../App.css';
 import './Comparison.css';
 import {XYPlot, XAxis, YAxis, HorizontalGridLines, LineSeries, ChartLabel} from 'react-vis';
@@ -19,19 +19,20 @@ function Comparison() {
     }
 
     return (
-      <div>
+      <div className="page">
+        <div id="bannerimage"></div>
         <h1>Compare Emissions with Other Countries</h1>
         <div className='description'>
             <p>To compare the CO2 emissions per capita per year based on country, select the countries on the right side.</p>
         </div>
         <div className='chart-container'>
-            <div id='comparison-chart'>
+            <div id='comparison-chart' className="flex-graph">
                 <div id='chart-title'>
                     Average CO2 Emissions Per Capita
                 </div>
                 <Chart countries={countries}/>
             </div>
-            <div>
+            <div className="flex-dropdown">
                 <div id='dropdown'>
                     <p>Select countries to compare:</p>
                     <Multiselect options={GetCountries()} 
@@ -51,10 +52,32 @@ function Chart(props) {
     let lines = props.countries.map((country) => {
             return (<LineSeries data={ChartLine(country)} />);
         });
+
+    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+    useEffect(() => {
+        function handleResize() {
+          setWindowDimensions(getWindowDimensions());
+        }
     
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    let width = 0;
+    let height = 0;
+    if (windowDimensions.width < 600) {
+        width = windowDimensions.width * 0.9;
+        height = width/1.6;
+    }else if (windowDimensions.width < 1000) {
+        width = windowDimensions.width * 0.75;
+        height = width/1.6;
+    } else {
+        width = windowDimensions.width * 0.6;
+        height = 600;
+    }
 
     return (
-        <XYPlot width={800} height={500}>
+        <XYPlot width={width} height={height}>
             <HorizontalGridLines />
             <ChartLabel
                 text="Year"
@@ -124,3 +147,11 @@ function Selected(selectedList, selectedItem) {
 function Lines() {
     <LineSeries data={ChartLine('Norway')} />
 }
+
+function getWindowDimensions() {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height
+    };
+  }

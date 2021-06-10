@@ -3,10 +3,10 @@ import '../../App.css';
 import Cards from '../Cards';
 import Landing from '../landing';
 
-function Home() {
+function Home(props) {
   return (
     <div>
-      <Landing />
+      <Landing user={props.user}/>
       <Cards />
     </div>
   );

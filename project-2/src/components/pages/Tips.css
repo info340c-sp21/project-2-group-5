@@ -1,6 +1,10 @@
+.page {
+  margin-bottom: 4rem;
+}
+
 .finished {
   text-decoration: line-through;
-  color: red;
+  color: #57BA98;
   cursor: pointer;
 }
 
@@ -9,7 +13,7 @@
 }
 
 .toDo:hover {
-  color:red;
+  color:#57BA98;
 }
 
 .container{
@@ -34,6 +38,11 @@ h1 {
   height: 10px;
 }
 
+.break2 {
+  flex-basis: 100%;
+  height: 0px;
+}
+
 ul {
   list-style: none;
   position: relative;
@@ -53,4 +62,28 @@ li {
 
 input {
   margin-right: 5px;
+}
+
+.progressBar {
+  margin-top: 2rem;
+  height: 2rem;
+  width: 20rem;
+  background-color: #f2f2f2;
+}
+
+img {
+  height: 110px;
+  width: 110px;
+  margin: -10px;
+}
+
+#bannerimage2 {
+  width: 100%;
+  background-image: url("imgs/tips.jpg");
+  height: 120px;
+  background-position: center;
+}
+.flex-item {
+  margin-top: 0;
+  padding-top: 0;
 }
