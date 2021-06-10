@@ -27,9 +27,11 @@ h1 {
     margin-left: auto;
 }
 
-.description {
-    padding: 3rem;
+.description > p {
+    padding: 1rem;
     padding-bottom: 0rem;
+    text-align: center;
+    color: #3B945E;
 }
 
 #dropdown {

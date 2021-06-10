@@ -17,7 +17,7 @@ function Info() {
                 <h2>
                     Our Mission
                 </h2>
-                <p>
+                <p className="tagLine">
                     We only get one Earth.
                 </p>
                 <p>
@@ -31,7 +31,7 @@ function Info() {
                 <h2>
                     How important is reducing your carbon footprint?
                 </h2>
-                <p>
+                <p className="tagLine">
                     The United Nations estimates that 2030 will be the year that climate change begins to be irreversible.
                 </p>
                 <p>
@@ -42,7 +42,7 @@ function Info() {
                 <h2>
                     What you can do to help
                 </h2>
-                <p>
+                <p className="tagLine">
                     Share your resources with friends and family! Stick to your goals and encourage others to join in on saving our Earth.
                 </p>
             </div>

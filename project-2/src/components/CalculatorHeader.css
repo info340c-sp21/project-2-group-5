@@ -6,3 +6,11 @@ p {
     text-align: center;
     margin-bottom: 0;
 }
+.instruction, .additional {
+    text-align: center;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.additional {
+    color: #3B945E;
+}

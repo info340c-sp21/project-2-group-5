@@ -11,8 +11,8 @@ function CalculatorHeader(props) {
     return (
         <div>
             <h1>{headerText}</h1>
-            <p>{instructionText}</p>
-            <p>{additionalText}</p>
+            <p className="instruction">{instructionText}</p>
+            <p className="additional">{additionalText}</p>
         </div>
     );
 }
