@@ -163,3 +163,9 @@
     transition: 250ms;
   }
 }
+
+@media screen and (min-width: 1108px){
+.navbar-container {
+  margin-left: 200px;
+}
+}
