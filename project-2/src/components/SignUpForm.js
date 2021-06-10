@@ -38,6 +38,7 @@ function SignUpForm(props) {
   }
 
   return (
+    <div className="SignupForm">
     <form>
       {/* email */}
       <div className="form-group">
@@ -79,6 +80,7 @@ function SignUpForm(props) {
         </div>
       </div>
     </form>
+    </div>
   )
 }
 

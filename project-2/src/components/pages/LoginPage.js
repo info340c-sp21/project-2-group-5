@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import firebase from 'firebase';
 import SignUpForm from '../SignUpForm.js';
 import { Redirect } from 'react-router';
+import '../signup.css';
  
 
 function LoginPage (props){
@@ -41,7 +42,7 @@ function LoginPage (props){
     } else {
         content = (
             <div>
-                <p>Log-in successfully! Let's expore Grenville!</p>
+                <p className="log-in">Log-in successfully! Let's expore Grenville!</p>
             </div>
         );
     }

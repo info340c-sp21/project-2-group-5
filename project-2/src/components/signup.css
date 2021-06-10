@@ -1,16 +1,12 @@
-/* form {
-    width: 300px;
+.SignupForm {
     text-align: center;
-    align-items: center;
     margin-top: 20px;
-    margin-left: 300px;
-} */
-
+}
 form {
+    display: inline-block;
     width: 200px;
     text-align: center;
     color:#252e48;
-    margin-left: 50px;
     margin-top: 10px;
 }
 .button-group {
@@ -55,26 +51,14 @@ form {
     background-color:rgba(255, 206, 86, 0.5);
     color:#ffb6c1;
 }
-
-@media only screen and (min-width: 500px) {
-    form {
-        width: 300px;
-        margin-left: 105px;
-    }
+.log-in {
+    color: #3B945E;
+    text-align: center;
+    margin-top: 20px;
 }
+
 @media only screen and (min-width: 789px) {
     form {
-        margin-left: 270px;
-    }
-}
-@media only screen and (min-width: 980px) {
-    form {
-        margin-left: 370px;
-    }
-}
-
-@media only screen and (min-width: 1180) {
-    form {
-        margin-left: 470px;
+        width: 400px;
     }
 }
