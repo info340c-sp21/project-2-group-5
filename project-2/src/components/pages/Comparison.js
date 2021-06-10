@@ -90,10 +90,6 @@ function Chart(props) {
                 yPercent={0.5}
                 style={{transform: 'rotate(-90)'}}
                 />
-            {/*
-            <LineSeries data={ChartLine('United States')} />
-            <LineSeries data={ChartLine('China')} />
-            */}
             {lines}
             {Lines(<Selected />)}
             <XAxis />
@@ -101,9 +97,6 @@ function Chart(props) {
         </XYPlot>
     )
 }
-
-//{Lines(<Selected />)}
-// <LineSeries data={ChartLine('Australia')} color='#59b953'/>
 
 function ChartLine(country) {
     // this is an array

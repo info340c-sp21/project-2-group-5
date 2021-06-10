@@ -4,3 +4,15 @@
   height: 120px;
   background-position: center;
 }
+
+p {
+  text-align: left;
+}
+
+#concept-container {
+  padding: 3rem;
+}
+
+#wrap-up {
+  padding-bottom: 3rem;
+}
