@@ -55,6 +55,20 @@
     background-color: orange; /* change color */
 }
 
+h3 {
+    padding: 1rem 0;
+}
+
+th {
+    text-align: left;
+    padding: 0 1.5rem;
+}
+
+tr {
+    text-align: center;
+}
+
+
 @media (min-width: 800px) {
     .flex-calculator {
         flex-flow: row nowrap;
