@@ -13,8 +13,8 @@
 
 .navbar-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-items: left;
   height: 80px;
   max-width: 1500px;
   padding-left: 20px;
@@ -164,8 +164,9 @@
   }
 }
 
-@media screen and (min-width: 1108px){
+
+/*@media screen and (min-width: 1108px){
 .navbar-container {
   margin-left: 200px;
 }
-}
+}*/
