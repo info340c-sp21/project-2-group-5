@@ -64,7 +64,7 @@ function Navbar(props) {
                     </Link>
                   </li>
                   <li className='nav-item'>
-                    <Link to='/Feature-TBD' className='nav-links' onClick={closeMenu}>
+                    <Link to='/Our-Concepts' className='nav-links' onClick={closeMenu}>
                       Our Concepts
                     </Link>
                   </li>

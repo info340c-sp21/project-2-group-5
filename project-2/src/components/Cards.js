@@ -35,7 +35,7 @@ function Cards() {
             <Card
               src='images/nature.jpg'
               text='Why Carbon Footprint'
-              path='/'
+              path='/Our-Concepts'
             />
           </ul>
           </div>

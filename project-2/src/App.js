@@ -33,7 +33,7 @@ function App() {
         <Route exact path='/Calculator'> <Calculator user={user}/></Route>
         <Route path='/Comparison' exact component={Comparison}/>
         <Route path='/Pro-Tips' exact component={Tips}/>
-        <Route path='/Feature-TBD' exact component={Concepts}/>
+        <Route path='/Our-Concepts' exact component={Concepts}/>
       </Switch>
       <Footer />
     </Router>
