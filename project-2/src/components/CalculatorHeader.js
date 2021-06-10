@@ -5,12 +5,14 @@ export default CalculatorHeader;
 
 function CalculatorHeader(props) {
     let headerText = 'Carbon Footprint Calculator';
-    let instructionText = 'Fill out the form below to automatically generate your carbon emissions';
+    let instructionText = 'Fill out the form below to automatically generate your carbon emissions from the main sources! Emissions are given in pounds of CO2 released.';
+    let additionalText = 'You can also save your results and get past results by signing up for an account!';
 
     return (
         <div>
             <h1>{headerText}</h1>
             <p>{instructionText}</p>
+            <p>{additionalText}</p>
         </div>
     );
 }

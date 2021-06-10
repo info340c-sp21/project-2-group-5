@@ -89,20 +89,23 @@ class InputForm extends React.Component {
             <div className="flex-calculator-form">
                 <div>
                     <h2>Vehicle Emissions</h2>
-                    <label for="miles">Miles Per Week</label><br/>
+                    <p>What are your driving habits?</p>
+                    <label for="miles">Miles Driven Per Week</label><br/>
                     <input type="number" id="miles" name="miles" role="input" value={this.state.miles} onChange={this.handleChange}/><br/>
                     <label for="mpg">Average Miles Per Gallon</label><br/>
                     <input type="number" id="mpg" name="mpg" role="input" value={this.state.mpg} onChange={this.handleChange}/><br/>
                 </div>
                 <div>
                     <h2>Home Emissions</h2>
-                    <label for="gas">$ Spent on Natural Gas</label><br/>
+                    <p>How much do you spend on:</p>
+                    <label for="gas">$ Spent on Natural Gas per Month</label><br/>
                     <input type="number" id="gas" name="gas" role="input" value={this.state.gas} onChange={this.handleChange}/><br/>
-                    <label for="electric">$ Spent on Electricty</label><br/>
+                    <label for="electric">$ Spent on Electricty per Month</label><br/>
                     <input type="number" id="electric" name="electric" role="input" value={this.state.electric} onChange={this.handleChange}/><br/>
                 </div>
                 <div>
                     <h2>Recycling Emissions</h2>
+                    <p>Which items do you recycle?</p>
                     <input type="checkbox" id="aluminum" name="aluminum" role="input" value={this.state.aluminum} onChange={this.handleChange}/>
                     <label for="aluminum">Aluminum Steel</label><br/>
                     <input type="checkbox" id="plastic" name="plastic" role="input" value={this.state.plastic} onChange={this.handleChange}/>
@@ -213,7 +216,7 @@ function RenderChart(props) {
     // render full
     return(
         <div className="flex-calculator-chart">
-            <h2>Your Emissions Breakdown</h2>
+            <h2>Your Emissions Breakdown (CO2 lbs)</h2>
             <Pie data={data} />
             <h3>As a table</h3>
             <table>
@@ -227,10 +230,10 @@ function RenderChart(props) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{Math.round(values[0])}</td>
-                        <td>{Math.round(values[1])}</td>
-                        <td>{Math.round(values[2])}</td>
-                        <td>{Math.round(values[0] + values[1] + values[2])}</td>
+                        <td>{Math.round(values[0]) + ' lbs'}</td>
+                        <td>{Math.round(values[1]) + ' lbs'}</td>
+                        <td>{Math.round(values[2]) + ' lbs'}</td>
+                        <td>{Math.round(values[0] + values[1] + values[2]) + ' lbs'}</td>
                     </tr>
                 </tbody>
             </table>
@@ -246,10 +249,10 @@ function HistoryItem(props) {
     return (
         <tr>
             <td>{dateString}</td>
-            <td>{Math.round(props.data.vehicle)}</td>
-            <td>{Math.round(props.data.home)}</td>
-            <td>{Math.round(props.data.recycle)}</td>
-            <td>{Math.round(props.data.vehicle + props.data.home + props.data.recycle)}</td>
+            <td>{Math.round(props.data.vehicle) + ' lbs'}</td>
+            <td>{Math.round(props.data.home) + ' lbs'}</td>
+            <td>{Math.round(props.data.recycle) + ' lbs'}</td>
+            <td>{Math.round(props.data.vehicle + props.data.home + props.data.recycle) + ' lbs'}</td>
         </tr>
     )
 }
