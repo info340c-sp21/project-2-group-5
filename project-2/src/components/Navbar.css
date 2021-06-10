@@ -14,7 +14,7 @@
 .navbar-container {
   display: flex;
   justify-content: left;
-  align-items: left;
+  align-items: center;
   height: 80px;
   max-width: 1500px;
   padding-left: 20px;
